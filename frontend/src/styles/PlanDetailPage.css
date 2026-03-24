@@ -1,0 +1,201 @@
+.plan-detail-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.plan-detail-page .detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+.plan-detail-page .detail-header h1 { margin: 0; font-size: 1.3rem; }
+
+.plan-info {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.plan-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.status-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.status-active, .status-in_progress { background: #dbeafe; color: #1e40af; }
+.status-completed { background: #ecfdf5; color: #047857; }
+.status-pending { background: #fef3c7; color: #b45309; }
+.status-paused { background: #f3f4f6; color: #6b7280; }
+.status-skipped { background: #f3f4f6; color: #6b7280; }
+
+.plan-date { color: #888; font-size: 0.85rem; }
+.plan-summary { color: #555; margin: 0 0 1rem; }
+
+.progress-bar {
+  position: relative;
+  height: 24px;
+  background: #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 12px;
+  transition: width 0.5s;
+}
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.steps-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+.steps-list h2 { margin: 0 0 1rem; }
+
+.step-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-left: 4px solid #e5e7eb;
+}
+.step-completed { border-left-color: #10b981; }
+.step-in_progress { border-left-color: #3b82f6; }
+.step-pending { border-left-color: #f59e0b; }
+
+.step-order {
+  font-weight: 700;
+  color: #667eea;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.step-info { flex: 1; }
+.step-info h3 { margin: 0; font-size: 1rem; }
+.step-info p { margin: 0.25rem 0 0; color: #666; font-size: 0.85rem; }
+
+.step-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.plan-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+
+.plan-card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.plan-card-summary { color: #555; font-size: 0.9rem; margin: 0 0 0.75rem; }
+
+.mini-progress {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+.mini-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 3px;
+}
+.progress-label { font-size: 0.8rem; color: #888; }
+
+.no-plans { color: #999; text-align: center; padding: 2rem 0; }
+
+/* Step companies */
+.step-companies {
+  width: 100%;
+  padding: 1rem 0 0;
+  border-top: 1px solid #eee;
+  margin-top: 0.5rem;
+}
+
+.step-companies h4 {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.companies-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.step-company-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  background: #f9f9ff;
+  border: 1px solid #e8e8f0;
+  border-radius: 6px;
+}
+
+.step-company-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.company-link {
+  font-weight: 600;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.company-link:hover {
+  text-decoration: underline;
+}
+
+.company-rating-sm {
+  font-size: 0.75rem;
+  color: #f59e0b;
+}
+
+.no-companies-text {
+  color: #999;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,89 @@
+.services-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.services-page .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.services-page .page-header h1 { margin: 0; }
+.services-page .page-header p { margin: 0.25rem 0 0; opacity: 0.9; font-size: 0.9rem; }
+.services-page .header-nav { display: flex; gap: 0.5rem; }
+
+.categories-list {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.category-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.category-header:hover { background: #f9f9f9; }
+.category-icon { font-size: 1.5rem; }
+.category-header h3 { margin: 0; flex: 1; font-size: 1.1rem; }
+.service-count { color: #888; font-size: 0.85rem; }
+.expand-icon { color: #888; }
+
+.services-list {
+  border-top: 1px solid #eee;
+  padding: 0.5rem 0;
+}
+
+.service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem 0.75rem 3.5rem;
+  border-bottom: 1px solid #f5f5f5;
+}
+.service-item:last-child { border-bottom: none; }
+
+.service-info h4 { margin: 0; font-size: 0.95rem; }
+.service-desc { margin: 0.25rem 0 0; color: #666; font-size: 0.8rem; }
+
+.service-meta { display: flex; align-items: center; gap: 0.75rem; }
+
+.priority-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.priority-critical { background: #fde8e8; color: #c53030; }
+.priority-recommended { background: #fefce8; color: #b45309; }
+.priority-optional { background: #ecfdf5; color: #047857; }
+
+.btn-small {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  border: 1px solid #667eea;
+  color: #667eea;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-small:hover { background: #667eea; color: white; }
+
+.no-services { padding: 1rem 1.5rem; color: #999; font-size: 0.9rem; }

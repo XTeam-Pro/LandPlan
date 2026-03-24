@@ -1,0 +1,69 @@
+.plan-intro {
+  color: #555;
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+  line-height: 1.5;
+}
+
+.plan-service-group {
+  margin-bottom: 1.25rem;
+}
+.plan-service-group h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.plan-service-group .badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #555;
+}
+
+.plan-service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.plan-service-item:hover { background: #f9f9ff; }
+.plan-service-item input[type="checkbox"] { margin-top: 0.2rem; }
+
+.service-details {
+  flex: 1;
+}
+.service-details .service-name {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.service-details .service-reason {
+  display: block;
+  color: #888;
+  font-size: 0.8rem;
+}
+.step-order {
+  color: #667eea;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.plan-summary {
+  padding: 0.75rem;
+  background: #f0f0ff;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #444;
+}

@@ -1,0 +1,129 @@
+.recommendations-block {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recommendations-block h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.recommendations-summary {
+  margin: 0 0 1.5rem 0;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-left: 4px solid #667eea;
+  font-size: 0.9rem;
+  color: #666;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.recommendations-section {
+  margin-bottom: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.critical .badge {
+  background: #ff5252;
+}
+
+.recommended .badge {
+  background: #ffa726;
+}
+
+.optional .badge {
+  background: #66bb6a;
+}
+
+.recommendations-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recommendation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+  border-left: 3px solid;
+}
+
+.critical .recommendation-item {
+  border-left-color: #ff5252;
+}
+
+.recommended .recommendation-item {
+  border-left-color: #ffa726;
+}
+
+.optional .recommendation-item {
+  border-left-color: #66bb6a;
+}
+
+.service-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.reason {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+.order {
+  font-size: 0.75rem;
+  color: #999;
+  text-align: right;
+}
+
+.create-plan-btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.create-plan-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}

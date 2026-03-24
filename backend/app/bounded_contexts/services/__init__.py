@@ -1,0 +1,1 @@
+"""Services (catalog) bounded context"""

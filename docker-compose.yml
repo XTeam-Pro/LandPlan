@@ -1,0 +1,129 @@
+services:
+  # Traefik Reverse Proxy
+  traefik:
+    image: traefik:latest
+    container_name: landplan_traefik
+    environment:
+      DOCKER_API_VERSION: "1.45"
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      # Entrypoints
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      # HTTP -> HTTPS redirect
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      # Let's Encrypt
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.letsencrypt.acme.email=admin@xteam.pro"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      # Logs
+      - "--log.level=INFO"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - letsencrypt_data:/letsencrypt
+    restart: unless-stopped
+    networks:
+      - landplan
+
+  # PostgreSQL Database with PostGIS
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: landplan_db
+    environment:
+      POSTGRES_DB: landplan_db
+      POSTGRES_USER: landplan_user
+      POSTGRES_PASSWORD: landplan_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U landplan_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - landplan
+
+  # Redis Cache & Message Broker
+  redis:
+    image: redis:7-alpine
+    container_name: landplan_redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - landplan
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: landplan_backend
+    environment:
+      DATABASE_URL: postgresql://landplan_user:landplan_password@db:5432/landplan_db
+      REDIS_URL: redis://redis:6379/0
+      DEBUG: "false"
+      JWT_SECRET_KEY: "thur0PU9wbAVupM-1i6VyxeSSX0j6-skcqGP5SloN9vtMEeAXOoXityfRbaaLJ_z"
+      CORS_ORIGINS: '["https://landplan.xteam.pro"]'
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      # Route /api, /docs, /redoc, /openapi.json to backend
+      - "traefik.http.routers.backend.rule=Host(`landplan.xteam.pro`) && (PathPrefix(`/api`) || PathPrefix(`/docs`) || PathPrefix(`/redoc`) || PathPrefix(`/openapi.json`))"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.backend.loadbalancer.server.port=8000"
+      - "traefik.http.routers.backend.priority=20"
+    networks:
+      - landplan
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: landplan_frontend
+    environment:
+      VITE_API_URL: ""
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host
+    depends_on:
+      - backend
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`landplan.xteam.pro`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.frontend.loadbalancer.server.port=5173"
+      - "traefik.http.routers.frontend.priority=10"
+    networks:
+      - landplan
+
+volumes:
+  postgres_data:
+  letsencrypt_data:
+
+networks:
+  landplan:
+    driver: bridge

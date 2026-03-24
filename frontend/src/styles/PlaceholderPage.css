@@ -1,0 +1,44 @@
+.placeholder-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.placeholder-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.placeholder-content h2 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.placeholder-status {
+  display: inline-block;
+  background: #fff3cd;
+  color: #856404;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.placeholder-desc {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
